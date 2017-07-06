@@ -534,7 +534,6 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
         @Override
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
-//           Display(mCurrentDir);
         }
 
         @Override
