@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="theme_array_key">
+        <item>White</item>
+        <item>Black</item>
+        <item>Purple-Light</item>
+        <item>Purple-Dark</item>
+        <item>Red-Light</item>
+        <item>Red-Dark</item>
+        <item>Cyan-Light</item>
+        <item>Cyan-Dark</item>
+
+    </string-array>
+    <string-array name="storage">
+        <item>sdcard</item>
+        <item>External</item>
+        <item>sdcard0</item>
+        <item>sdcard1</item>
+    </string-array>
+</resources>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">File Manager</string>
+    <string name="default_key">Cyan-Light</string>
+    <string name="app_version">1.0</string>
+    <string name="json_url">https://raw.githubusercontent.com/neerajM3958/AndroidPackages/master/packages.json</string>
+    <string name="app_is_updated">File Manager is Up To Date</string>
+    <string name="key_hidden">key hidden</string>
+    <string name="value_hidden">false</string>
+    <string name="value_root">false</string>
+    <string name="key_root">key root</string>
+    <string name="last_path">/storage/sdcard</string>
+    <string name="last_adapter_position">0</string>
+    <string name="key_storage">key storage</string>
+    <string name="value_storage">External</string>
+
+
+</resources>

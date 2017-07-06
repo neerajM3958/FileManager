@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="1dp"
+    android:elevation="4dp"
+    android:minHeight="58dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/list_item_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/list_item_drop_menu"
+            android:layout_toStartOf="@+id/list_item_drop_menu">
+
+            <ImageView
+                android:id="@+id/property_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/property_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@+id/property_icon"
+                android:gravity="center_vertical"
+                android:textAppearance="?android:textAppearanceSmall"
+                tools:text="file name" />
+
+            <TextView
+                android:id="@+id/property_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/property_name"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/property_name"
+                android:layout_below="@+id/property_name"
+                android:gravity="bottom"
+                tools:text="10/5/2017" />
+
+            <TextView
+                android:id="@+id/property_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/property_name"
+                android:gravity="bottom"
+                tools:text="100kb" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/list_item_drop_menu"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:text="&#8942;"
+            android:textAppearance="?android:textAppearanceLarge" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

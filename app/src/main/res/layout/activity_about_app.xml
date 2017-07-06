@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.blogspot.afoxtutorials.filemanager.AboutApp">
+
+    <ImageView
+        android:id="@+id/afoxtutorials_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="foxyIntent"
+        android:src="@drawable/afoxtutorials" />
+
+    <TextView
+        android:id="@+id/site"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/afoxtutorials_icon"
+        android:gravity="center"
+        android:text="http://www.afoxtutorials.blogspot.com" />
+
+    <TextView
+        android:id="@+id/devName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/site"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="Developer- NeerajM"
+        android:textSize="26dp" />
+
+    <TextView
+        android:id="@+id/contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/devName"
+        android:layout_marginLeft="13dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="Contact"
+        android:textSize="9sp" />
+
+    <ImageView
+        android:id="@+id/gplus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contact"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/gplus_icon"
+        android:text="G+" />
+
+    <ImageView
+        android:id="@+id/fb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contact"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@+id/gplus"
+        android:src="@drawable/facebook_icon"
+        android:text="FB" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:onClick="bugreport"
+        android:text="Bug Report" />
+</RelativeLayout>
+
+

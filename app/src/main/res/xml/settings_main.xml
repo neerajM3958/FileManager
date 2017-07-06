@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="Settings">
+    <PreferenceCategory android:title="General">>
+        <CheckBoxPreference
+            android:defaultValue="@string/value_hidden"
+            android:key="@string/key_hidden"
+            android:title="Show hidden files" />
+        <CheckBoxPreference
+            android:defaultValue="@string/value_root"
+            android:key="@string/key_root"
+            android:title="Root Explorer" />
+        <ListPreference
+            android:defaultValue="@string/value_storage"
+            android:entries="@array/storage"
+            android:entryValues="@array/storage"
+            android:key="@string/key_storage"
+            android:title="Default Storage" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Appreance">
+
+    </PreferenceCategory>
+    <ListPreference
+        android:defaultValue="@string/default_key"
+        android:entries="@array/theme_array_key"
+        android:entryValues="@array/theme_array_key"
+        android:key="theme_list_prefrence"
+        android:title="Theme" />
+
+</PreferenceScreen>

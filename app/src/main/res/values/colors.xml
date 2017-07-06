@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_text_light">@color/Black</color>
+    <color name="secondary_text_light">@color/Nmaterial_grey_800</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="black_board_color">#202020</color>
+    <color name="Nmaterial_grey_50">#fafafa</color>
+    <color name="Nmaterial_grey_100">#f5f5f5</color>
+    <color name="Nmaterial_grey_300">#E0E0E0</color>
+    <color name="Nmaterial_grey_400">#bdbdbd</color>
+    <color name="Nmaterial_grey_800">#FF424242</color>
+    <color name="Nmaterial_grey_900">#FF212121</color>
+    <color name="Black">#000000</color>
+    <color name="White">#ffffff</color>
+    <color name="Nred_accent_700">#FFD50000</color>
+    <color name="Nred_accent_900">#FFB71C1C</color>
+    <color name="Nmaterial_red_700">#d32f2f</color>
+    <color name="Nmaterial_purple_400">#ba47ce</color>
+    <color name="Nmaterial_purple_500">#9c27b0</color>
+    <color name="Nmaterial_purple_800">#6a1b9a</color>
+    <color name="Nmaterial_cyan_800">#FF0097A7</color>
+    <color name="Nmaterial_cyan_700">#FF0097A7</color>
+    <color name="Nmaterial_cyan_900">#006064</color>
+
+
+</resources>
