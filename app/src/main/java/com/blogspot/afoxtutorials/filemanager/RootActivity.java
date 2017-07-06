@@ -200,8 +200,6 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
             arrayList.addAll(arrayList2);
             arrayList.addAll(arrayList3);
             adapter.notifyDataSetChanged();
-          /*Displasync display=new Displasync();
-          display.execute(tmpFileArray);*/
             mCurrentDir = file;
         } else if (file.isDirectory() && !file.canRead()) {
             arrayList.clear();

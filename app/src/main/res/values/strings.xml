@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">File Manager</string>
     <string name="default_key">Cyan-Light</string>
-    <string name="app_version">1.1</string>
+    <string name="app_version">1.2</string>
     <string name="json_url">https://raw.githubusercontent.com/neerajM3958/AndroidPackages/master/packages.json</string>
     <string name="app_is_updated">File Manager is Up To Date</string>
     <string name="key_hidden">key hidden</string>
