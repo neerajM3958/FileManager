@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -385,7 +386,7 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
         if (b) {
             FabCancel.setRotation(45);
             FabCopy.setVisibility(View.VISIBLE);
-            FabCopy.setBackgroundResource(R.drawable.ic_content_copy_24dp);
+            FabCopy.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_content_copy_24dp));
             FabCut.setVisibility(View.VISIBLE);
             FabDelete.setVisibility(View.VISIBLE);
 
@@ -396,7 +397,7 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
             } else {
                 FabCancel.setRotation(45);
                 FabCopy.setVisibility(View.VISIBLE);
-                FabCopy.setBackgroundResource(R.drawable.ic_content_paste_24dp);
+                FabCopy.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_content_paste_24dp));
             }
             FabCut.setVisibility(View.GONE);
             FabDelete.setVisibility(View.GONE);
