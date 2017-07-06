@@ -205,7 +205,7 @@ public class CustomRecyclerView extends RecyclerView.Adapter<CustomRecyclerView.
                     }
                     if (bal == 0) {
                         mList.get(0).setSelected(false);
-                        mClipBoard = new ArrayList<File>();
+                        mClipBoard = new ArrayList<>();
                         itemClickCallback.onItemClick(getAdapterPosition(), "null", false);
                     } else if (mList.get(0).ismSelected()) {
                         checkListItem();

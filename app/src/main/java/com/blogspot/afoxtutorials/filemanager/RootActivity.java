@@ -205,7 +205,7 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
             mCurrentDir = file;
         } else if (file.isDirectory() && !file.canRead()) {
             arrayList.clear();
-            List<DataGetSetter> list = mOPH.openDirRoot(file);
+            List<DataGetSetter> list = new OperationHandler(rootenabled).openDirRoot(file);
             arrayList.addAll(list);
             adapter.notifyDataSetChanged();
             mCurrentDir = file;
