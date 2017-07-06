@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RootActivity extends AppCompatActivity implements CustomRecyclerView.ItemClickCallback, View.OnClickListener {
+public class RootActivity extends AppCompatActivity implements CustomRecyclerView.ItemClickCallback, View.OnClickListener, AsyncResponse {
     private static CustomRecyclerView adapter;
     static private File mCurrentDir;
     final int CONTEXT_MENU_New_File = 1;
@@ -177,7 +177,7 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
         dialog.show();
     }
 
-    void Display(File file) {
+    private void Display(File file) {
         String name = file.getName();
         String mimeType = mOPH.getMimeType(file);
         mimeType = mimeType == null ? "" : mimeType;
@@ -365,7 +365,9 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
                     if (operation == CUT)
                         opH.cut(currentFile, new File(mCurrentDir, currentFile.getName()));
                     else {
-                        new CopyTask().execute(currentFile, mCurrentDir);
+                        CopyTask task = new CopyTask();
+                        task.delegate = this;
+                        task.execute(currentFile, mCurrentDir);
                     }
                     break;
                 default:
@@ -517,7 +519,15 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
         editor.apply();
     }
 
+    @Override
+    public void processFinish(Integer integer) {
+        Display(mCurrentDir);
+    }
+
+
     private static class CopyTask extends AsyncTask<File, Integer, Integer> {
+        public AsyncResponse delegate = null;
+
         @Override
         protected Integer doInBackground(File... params) {
             OperationHandler oph = new OperationHandler(true);
@@ -533,8 +543,9 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
 
         @Override
         protected void onPostExecute(Integer integer) {
-            super.onPostExecute(integer);
+            delegate.processFinish(integer);
         }
+
 
         @Override
         protected void onProgressUpdate(Integer... values) {
