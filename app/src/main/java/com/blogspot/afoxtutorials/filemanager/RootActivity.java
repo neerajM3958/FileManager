@@ -1,5 +1,7 @@
 package com.blogspot.afoxtutorials.filemanager;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -53,6 +56,22 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
     private FloatingActionButton FabCancel, FabCopy, FabCut, FabDelete;
     private int operation = -1;
 
+    public void getPermission(Context context, String permission, int requestCode) {
+        if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(RootActivity.this, permission)) {
+
+                //This is called if user has denied the permission before
+                //In this case I am just asking the permission again
+                ActivityCompat.requestPermissions(RootActivity.this, new String[]{permission}, requestCode);
+
+            } else {
+
+                ActivityCompat.requestPermissions(RootActivity.this, new String[]{permission}, requestCode);
+            }
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -99,6 +118,9 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
         int themeID = new Themer(this).themeRes();
         setTheme(themeID);
         setContentView(R.layout.activity_root);
+        getPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE, 0);
+        getPermission(this, Manifest.permission.ACCESS_NETWORK_STATE, 1);
+        getPermission(this, Manifest.permission.INTERNET, 2);
         mOPH = new OperationHandler(rootenabled);
         hiddensharedPreference = PreferenceManager.getDefaultSharedPreferences(this);
         rootsharedPreference = PreferenceManager.getDefaultSharedPreferences(this);
@@ -480,18 +502,27 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
 
     private String[] getStorageList() {
         File file = new File("/storage");
-        return file.list(new FilenameFilter() {
+        String[] s = file.list(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
                 File file = new File(dir, name);
                 if (name.startsWith("sdcard") && file.list() != null) {
                     return true;
-                } else if (!name.equals("emulated") && file.list() != null) {
-                    return true;
+                } else if (file.list() != null) {
+                    File[] tmp = file.listFiles();
+                    if (tmp[0].canWrite()) return true;
+                } else if (file.getName().equals("emulated")) {
+                    File tmp = new File(file, "0");
+                    File[] tmp2 = tmp.listFiles();
+                    if (tmp2[0].canWrite()) return true;
                 }
                 return false;
             }
         });
+        for (int i = 0; i < s.length; i++) {
+            if (s[i].equals("emulated")) s[i] += "/0";
+        }
+        return s;
     }
 
     private void addItemToList(File file) {
