@@ -1,5 +1,7 @@
 package com.blogspot.afoxtutorials.filemanager;
 
+import android.support.annotation.NonNull;
+
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -8,7 +10,12 @@ import java.text.SimpleDateFormat;
  * Created by neerajMalhotra on 15-06-2017.
  */
 
-public class DataGetSetter {
+public class DataGetSetter implements Comparable<DataGetSetter>{
+    @Override
+    public int compareTo(@NonNull DataGetSetter o) {
+        return this.mFileName.compareTo(o.getmFileName());
+    }
+
     int mFileType;
     long mFileSize;
     boolean mDirectory = false;

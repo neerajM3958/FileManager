@@ -16,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.util.SortedList;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,7 +32,11 @@ import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 
 public class RootActivity extends AppCompatActivity implements CustomRecyclerView.ItemClickCallback, View.OnClickListener, AsyncResponse {
@@ -206,27 +211,25 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
         mimeType = mimeType == null ? "" : mimeType;
         if (file.isDirectory() && file.canRead()) {
             arrayList.clear();
-            File[] f = mOPH.sorter(file.listFiles());
+            File[] f=file.listFiles();
             if (file.getParent() != null) {
                 arrayList.add(new DataGetSetter(new File(file.getParent()), name, rootenabled));
             }
-            ArrayList<DataGetSetter> arrayList1 = new ArrayList<>();
-            ArrayList<DataGetSetter> arrayList2 = new ArrayList<>();
-            ArrayList<DataGetSetter> arrayList3 = new ArrayList<>();
+            TreeSet<DataGetSetter> sortedList1 = new TreeSet<>();
+            TreeSet<DataGetSetter> sortedList2 = new TreeSet<>();
             for (File x : f) {
-                if (x.getName().startsWith(".")) arrayList1.add(new DataGetSetter(x));
-                else if (x.isDirectory()) arrayList2.add(new DataGetSetter(x));
-                else arrayList3.add(new DataGetSetter(x));
+                if (x.getName().startsWith(".")){if(showHiddenFiles) arrayList.add(new DataGetSetter(x));}
+                else if(x.isDirectory()) sortedList1.add(new DataGetSetter(x));
+                else sortedList2.add(new DataGetSetter(x));
             }
-            if (showHiddenFiles) arrayList.addAll(arrayList1);
-            arrayList.addAll(arrayList2);
-            arrayList.addAll(arrayList3);
+            arrayList.addAll(sortedList1);
+            arrayList.addAll(sortedList2);
             adapter.notifyDataSetChanged();
             mCurrentDir = file;
         } else if (file.isDirectory() && !file.canRead()) {
             arrayList.clear();
             List<DataGetSetter> list = new OperationHandler(rootenabled).openDirRoot(file);
-            arrayList.addAll(list);
+            if(list!=null)arrayList.addAll(list);
             adapter.notifyDataSetChanged();
             mCurrentDir = file;
         } else if (mimeType.startsWith("text") || name.endsWith(".txt") || name.endsWith(".c") || name.endsWith(".cpp") || name.endsWith(".java") || name.endsWith(".py") || name.endsWith(".rc") || name.endsWith(".prop")) {
@@ -249,34 +252,6 @@ public class RootActivity extends AppCompatActivity implements CustomRecyclerVie
             }
         }
     }
-
-    /*private class Displasync extends  AsyncTask<File[],Void,Void>{
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            adapter.notifyDataSetChanged();
-        }
-
-        @Override
-        protected Void doInBackground(File[]... tmpFileArray) {
-            File f[]=tmpFileArray[0];
-            ArrayList<DataGetSetter> arrayList1=new ArrayList<>();
-            ArrayList<DataGetSetter> arrayList2=new ArrayList<>();
-            ArrayList<DataGetSetter> arrayList3=new ArrayList<>();
-              for (int i=0;i<f.length;i++) {
-                  if (f[i].getName().startsWith(".")) arrayList1.add(new DataGetSetter(f[i]));
-                  else if (f[i].isDirectory()) arrayList2.add(new DataGetSetter(f[i]));
-                  else arrayList3.add(new DataGetSetter(f[i]));
-              }
-          if(showHiddenFiles)arrayList.addAll(arrayList1);
-            arrayList.addAll(arrayList2);
-            arrayList.addAll(arrayList3);
-            return null;
-        }
-
-    }
-*/
     @Override
     public void onItemClick(int position, String action, boolean b) {
         if (action.equals("delete") && b) {

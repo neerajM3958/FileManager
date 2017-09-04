@@ -211,19 +211,6 @@ public class OperationHandler {
         return b;
     }
 
-    public File[] sorter(File[] files) {
-        File min;
-        for (int j = 0; j < files.length - 1; j++) {
-            for (int i = 0; i < files.length - j - 1; i++) {
-                if (files[i].getName().charAt(0) > files[i + 1].getName().charAt(0)) {
-                    min = files[i];
-                    files[i] = files[i + 1];
-                    files[i + 1] = min;
-                }
-            }
-        }
-        return files;
-    }
 
     public String getMimeType(File file) {
         String s = getExt(file);

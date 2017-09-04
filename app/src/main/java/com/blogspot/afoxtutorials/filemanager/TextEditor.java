@@ -99,7 +99,7 @@ public class TextEditor extends AppCompatActivity {
         mEditView = (EditText) findViewById(R.id.editor_edit_text);
         Intent intent = getIntent();
         Uri uri = intent.getData();
-        tmp = new File(uri.toString());
+        tmp = new File(uri.getPath());
         if (!tmp.canWrite()) {
             file = new File("/sdcard/android", tmp.getName());
             new OperationHandler(rootEnabled).exec("cp -f " + tmp + " " + file);

@@ -61,7 +61,7 @@ public class MusicPlayer extends AppCompatActivity implements View.OnClickListen
 
         Intent intent = getIntent();
         Uri uri = intent.getData();
-        file = new File(uri.toString());
+        file = new File(uri.getPath());
 
 
         mMediaPlayer = new MediaPlayer();
